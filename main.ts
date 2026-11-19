@@ -102,3 +102,7 @@ try {
   process.stderr.write(`[entry] ${err instanceof Error ? err.message : String(err)}\n`);
   process.exit(1);
 }
+
+// Graceful shutdown: exit cleanly when the harness stops the process.
+process.on("SIGTERM", () => process.exit(0));
+process.on("SIGINT", () => process.exit(0));
